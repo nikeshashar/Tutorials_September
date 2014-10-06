@@ -1,4 +1,3 @@
-# bcrypt will generate the password hash
 require 'bcrypt'
 
 class User
@@ -6,7 +5,7 @@ class User
   include DataMapper::Resource
 
   property :id, Serial
-  property :email, String
+  property :email, String, unique: true, message: "This email is already taken"
   # this will store both the password and the salt
   # It's Text and not String because String holds
   # 50 characters by default
@@ -14,6 +13,7 @@ class User
   property :password_digest, Text
 
   validates_confirmation_of :password
+  validates_uniqueness_of :email
 
   attr_reader :password
   attr_accessor :password_confirmation
