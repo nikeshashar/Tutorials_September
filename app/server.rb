@@ -11,6 +11,7 @@ require_relative 'controllers/link'
 require_relative 'controllers/session'
 require_relative 'controllers/tag'
 require_relative 'controllers/user'
+require_relative 'controllers/forgot'
 
 
 enable :sessions
