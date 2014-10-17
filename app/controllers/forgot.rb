@@ -26,3 +26,31 @@ end
 def create_new_timestamp
   Time.now 
 end
+
+get '/users/reset/:password_token' do 
+  user = User.first(password_token: params[:password_token])
+  if user
+    erb :"users/update_password"
+  else
+    "Your token is rejected!"
+  end
+end
+
+post '/users/reset_password' do 
+  user = User.first(password_token: params[:password_token])
+  if user
+    user.update(password: params[:password], 
+                password_confirmation: params[:password_confirmation])
+    "Password updated successfully"
+  end
+end
+
+def send_email
+  RestClient.post "https://api:key-dd499fed82249487919e1af19f7fd66f"\
+  "@api.mailgun.net/v2/sandbox43830a12e14e48f0823d1f1f846435cc.mailgun.org/messages",
+  :from => "Excited User <me@samples.mailgun.org>",
+  :to => "nikeshashar@gmail.com",
+  :subject => "Hello",
+  :text => "Testing some Mailgun awesomness!"
+end
+
