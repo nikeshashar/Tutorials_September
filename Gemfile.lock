@@ -91,6 +91,8 @@ GEM
     rspec-mocks (3.1.1)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.0)
+    shotgun (0.9)
+      rack (>= 1.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -121,5 +123,6 @@ DEPENDENCIES
   rack
   rack-flash3
   rspec
+  shotgun
   sinatra
   sinatra-partial
