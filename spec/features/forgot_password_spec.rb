@@ -24,4 +24,12 @@ feature "User forgets password" do
     expect(page).to have_content("Sorry, wrongtest@test.com is not registered. Please sign up first!")
   end
 
+  scenario "successful reset" do
+    visit '/users/forgot'
+    fill_in 'email', with: "nikeshashar@gmail.com"
+    click_on 'Reset Password'
+    allow(Notifications).to receive(:send_notification).and_return("success")
+    expect(page).to have_content("Password reset email sent to nikeshashar@gmail.com")
+  end
+
 end
