@@ -28,7 +28,7 @@ feature "User forgets password" do
     visit '/users/forgot'
     fill_in 'email', with: "nikeshashar@gmail.com"
     click_on 'Reset Password'
-    allow(Notifications).to receive(:send_notification).and_return("success")
+    allow(Notifications).to receive(:send_email).and_return("success")
     expect(page).to have_content("Password reset email sent to nikeshashar@gmail.com")
   end
 

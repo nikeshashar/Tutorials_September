@@ -1,3 +1,5 @@
+require 'rest_client'
+
 get '/users/forgot' do 
   @user = User.new
   erb :"users/forgot"
@@ -45,10 +47,10 @@ post '/users/reset_password' do
   end
 end
 
-def send_email
+def send_email(user, token)
   RestClient.post "https://api:key-dd499fed82249487919e1af19f7fd66f"\
   "@api.mailgun.net/v2/sandbox43830a12e14e48f0823d1f1f846435cc.mailgun.org/messages",
-  :from => "Excited User <me@samples.mailgun.org>",
+  :from => "Boris Bikes at Makers <rspec@borisbikes.com>",
   :to => "nikeshashar@gmail.com",
   :subject => "Hello",
   :text => "Testing some Mailgun awesomness!"
